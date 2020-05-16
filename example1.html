@@ -1,0 +1,38 @@
+<!doctype html>
+<html ng-app>
+
+<head>
+    <title>My AngularJS App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
+    <script>
+        function ValCtrl($scope) {
+            $scope.val = 1000.1;
+            $scope.op_multiply = true; //initialize
+            $scope.$watch('val', function() {
+                $scope.multiply = $scope.val * 2;
+            });
+            //display total
+            $scope.$watch('total', function() {
+                $scope.total_display = $scope.total ? 'block' : 'none';
+            });
+        }
+    </script>
+</head>
+
+<body ng-controller="ValCtrl">
+    <div>
+
+        <input type="checkbox" ng-model="op_multiply">multiply
+        <input type="checkbox" ng-model="total">show total
+
+    </div>
+    Value : <input type="text" ng-model="val" placeholder="cost" />
+    <p>
+        This is your value: {{val}}
+    </p>
+    <p style="display: {{total_display}}">
+        This is the result of multiplication: {{multiply}}
+    </p>
+</body>
+
+</html>

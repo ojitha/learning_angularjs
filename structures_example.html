@@ -1,0 +1,47 @@
+<!doctype html>
+<html ng-app>
+
+<head>
+    <title>use of nestead controller</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.17/angular.min.js"></script>
+    <script>
+        function Ctrl($scope) {
+            $scope.students = [{
+                name: "Ojitha",
+                subjects: ["Maths", "Physics"]
+            }, {
+                name: "Mark",
+                subjects: ["Englis", "Art"]
+            }, {
+                name: "Nimal",
+                subjects: ["Religon", "History"]
+            }];
+        };
+
+        function StudentCtrl($scope) {
+            $scope.show = function() {
+                $scope.student.show_subject = true;
+            };
+
+            $scope.hide = function() {
+                $scope.student.show_subject = false;
+            }
+        };
+    </script>
+</head>
+
+<body ng-controller="Ctrl">
+    <div ng-repeat="student in students" ng-controller="StudentCtrl">
+        {{student.name}} (
+        <a href="#" ng-click="show()" ng-hide="student.show_subject">show</a>
+        <a href="#" ng-click="hide()" ng-show="student.show_subject">Hide</a> )
+
+        <div style="margin-left: 50px;" ng-show="student.show_subject">
+            <div ng-repeat="subject in student.subjects">
+                {{subject}}
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
